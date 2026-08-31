@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HAI MENU</title>
+
+<style>
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    overflow-x: hidden;
+    padding: 25px 15px;
+
+    background: linear-gradient(
+        -45deg,
+        #4a148c,
+        #7b1fa2,
+        #9c27b0,
+        #ce93d8,
+        #6a1b9a
+    );
+
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* LOADING */
+#loading {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background: linear-gradient(
+        135deg,
+        #12001f,
+        #4a148c,
+        #7b1fa2
+    );
+
+    z-index: 10000;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
+}
+
+.loading-logo {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 3px solid #ffffff;
+
+    box-shadow:
+        0 0 12px #ffffff,
+        0 0 30px #d500f9,
+        0 0 55px #7c4dff;
+
+    animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.loading-title {
+    margin-top: 18px;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 12px rgba(255,255,255,0.7);
+}
+
+.loading-text {
+    margin-top: 8px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.loading-bar {
+    width: 230px;
+    height: 7px;
+    margin-top: 20px;
+
+    background: rgba(255,255,255,0.2);
+
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    width: 0;
+    height: 100%;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 10px #ffffff;
+
+    animation:
+        loadingProgress 2.5s ease forwards;
+}
+
+@keyframes loadingProgress {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* MAIN */
+.container {
+    width: 100%;
+    max-width: 450px;
+
+    margin: 0 auto;
+
+    position: relative;
+    z-index: 2;
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-logo {
+    width: 95px;
+    height: 95px;
+
+    object-fit: cover;
+    border-radius: 50%;
+
+    border: 3px solid #ffffff;
+
+    margin-bottom: 10px;
+
+    box-shadow:
+        0 0 10px #ffffff,
+        0 0 25px #d500f9,
+        0 0 45px #7c4dff;
+
+    animation: logoGlow 2s ease-in-out infinite;
+}
+
+@keyframes logoGlow {
+    0% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 10px #ffffff,
+            0 0 25px #d500f9,
+            0 0 45px #7c4dff;
+    }
+
+    50% {
+        transform: scale(1.05);
+
+        box-shadow:
+            0 0 15px #ffffff,
+            0 0 35px #d500f9,
+            0 0 60px #7c4dff;
+    }
+
+    100% {
+        transform: scale(1);
+
+        box-shadow:
+            0 0 10px #ffffff,
+            0 0 25px #d500f9,
+            0 0 45px #7c4dff;
+    }
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 800;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,0.25),
+        0 0 20px rgba(255,255,255,0.3);
+}
+
+.header p {
+    margin-top: 8px;
+    min-height: 18px;
+
+    font-size: 14px;
+
+    opacity: 0.9;
+}
+
+/* SECTION */
+.section-title {
+    margin-bottom: 20px;
+
+    font-size: 30px;
+    font-weight: 800;
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,0.25),
+        0 0 15px rgba(255,255,255,0.25);
+}
+
+/* BOX */
+.box {
+    position: relative;
+
+    width: 100%;
+
+    margin-bottom: 15px;
+    padding: 18px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    background: rgba(255,255,255,0.15);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.25),
+        0 0 20px rgba(255,255,255,0.15);
+}
+
+.box::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 50%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    animation: shine 4s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -100%;
+    }
+
+    50% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+/* NAME */
+.name {
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 12px;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+/* BUTTON */
+.btn {
+    position: relative;
+    z-index: 2;
+
+    display: block;
+
+    width: 100%;
+
+    padding: 12px;
+
+    text-align: center;
+    text-decoration: none;
+
+    color: #7b2cbf;
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 4px 10px rgba(0,0,0,0.12);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+/* SPACE */
+.section-space {
+    width: 100%;
+    height: 160px;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 20px;
+    padding-bottom: 20px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    opacity: 0.75;
+}
+
+/* SNOW */
+#snow-container {
+    position: fixed;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 9999;
+}
+
+.snow {
+    position: absolute;
+
+    top: -30px;
+
+    color: #ffffff;
+
+    user-select: none;
+
+    text-shadow:
+        0 0 5px #ffffff,
+        0 0 10px #ffffff;
+
+    animation:
+        snowFall linear forwards;
+}
+
+@keyframes snowFall {
+    0% {
+        transform:
+            translateY(-30px)
+            translateX(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(50vh)
+            translateX(-20px)
+            rotate(180deg);
+    }
+
+    100% {
+        transform:
+            translateY(110vh)
+            translateX(20px)
+            rotate(360deg);
+    }
+}
+
+/* MOBILE */
+@media screen and (max-width: 480px) {
+
+    body {
+        padding: 20px 12px;
+    }
+
+    .header h1 {
+        font-size: 29px;
+    }
+
+    .box {
+        padding: 16px;
+    }
+
+    .loading-logo {
+        width: 105px;
+        height: 105px;
+    }
+
+    .loading-title {
+        font-size: 25px;
+    }
+
+    .section-space {
+        height: 140px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loading">
+
+    <img
+        src="1000004086.jpg"
+        class="loading-logo"
+        alt="HAI MENU"
+    >
+
+    <div class="loading-title">
+        HAI MENU
+    </div>
+
+    <div class="loading-text">
+        Đang tải...
+    </div>
+
+    <div class="loading-bar">
+        <div class="loading-progress"></div>
+    </div>
+
+</div>
+
+<!-- SNOW -->
+<div id="snow-container"></div>
+
+<!-- WEBSITE -->
+<main
+    class="container"
+    id="main"
+>
+
+    <header class="header">
+
+        <img
+            src="1000004086.jpg"
+            class="header-logo"
+            alt="HAI MENU"
+        >
+
+        <h1>
+            HAI MENU
+        </h1>
+
+        <p id="typing-text"></p>
+
+    </header>
+
+    <div id="menu-content"></div>
+
+    <div class="footer">
+        © 2026 HAI MENU
+    </div>
+
+</main>
+
+<script>
+
+/* =====================================================
+   MENU DATA
+===================================================== */
+
+const menuData = [
+
+    {
+        title: "📱 định vị",
+
+        items: [
+
+            {
+                name: "🔴 Đv ffmax (đỏ đen)",
+                link: "https://link4m.net/tgVzM"
+            },
+
+            {
+                name: "🩷 Đv ffmax (hồng)",
+                link: "https://link4m.org/cw3dJq"
+            },
+          
+          {
+            name:  "❤️dv max holograma",
+            link:  "https://link4m.net/JyqESHQ"
+          },
+          {
+            name: "❤️dv max rosa",
+            link: "https://link4m.net/LW0RS6C"
+          },
+
+            {
+                name: "💗 Đv th (hồng)",
+                link: "https://link4m.org/Dc1eCE"
+            },
+          
+            {
+                 name: "🩷 Đv th (hồng cam)",
+                 link: "https://link4m.org/X4yKJIV"
+             }
+  
+        ]
+    },
+  {
+    title: "📱 app",
+
+        items: [
+          {
+            name: "🔥 Sasuke ADR",
+          link: "https://link4m.net/lTRiIKmb"
+          },
+          {
+            name: "🔥 Sasuke ios",
+            link: "https://link4m.net/ASSEBxM1"
+          },
+          {
+            name: "📱 App mod",
+            link: "https://link4m.net/i2ycI6E"
+          },
+          {
+            name: "🎯 Nhẹ tâm",
+            link: "https://link4m.org/yqcBJEGC"
+          }
+          
+        ]
+         },
+         {
+    
+        title: "🔑 Key",
+
+        items: [
+
+            {
+                name: "🔑 Key app hỗ trợ ADR",
+                link: "https://ttrungshop.monster/get-products-free/"
+            }
+
+        ]
+    },
+
+    {
+        title: "📺 Hướng dẫn",
+
+        items: [
+
+            {
+                name: "📺 Hướng dẫn cài định vị",
+                link: "https://youtu.be/8qfScbvSaC4?si=yqLI_-KAgXX7B-Md"
+            },
+
+          {
+            name: "📺 Hướng dẫn cài holograma va rosi",
+            link: "https://fnote.net/notes/sWm72v"
+          }
+
+        ]
+    }
+
+];
+
+
+/* =====================================================
+   TẠO MENU
+===================================================== */
+
+const menuContent =
+    document.getElementById("menu-content");
+
+function createMenu() {
+
+    menuContent.innerHTML = "";
+
+    menuData.forEach(function(section, sectionIndex) {
+
+        const title =
+            document.createElement("div");
+
+        title.className =
+            "section-title";
+
+        title.textContent =
+            section.title;
+
+        menuContent.appendChild(title);
+
+
+        section.items.forEach(function(item) {
+
+            const box =
+                document.createElement("div");
+
+            box.className =
+                "box";
+
+
+            const name =
+                document.createElement("div");
+
+            name.className =
+                "name";
+
+            name.textContent =
+                item.name;
+
+
+            const button =
+                document.createElement("a");
+
+            button.className =
+                "btn";
+
+            button.textContent =
+                "Tại đây";
+
+            button.href =
+                item.link;
+
+            button.target =
+                "_blank";
+
+            button.rel =
+                "noopener noreferrer";
+
+
+            box.appendChild(name);
+
+            box.appendChild(button);
+
+            menuContent.appendChild(box);
+
+        });
+
+
+        if (
+            sectionIndex <
+            menuData.length - 1
+        ) {
+
+            const space =
+                document.createElement("div");
+
+            space.className =
+                "section-space";
+
+            menuContent.appendChild(space);
+
+        }
+
+    });
+
+}
+
+createMenu();
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+window.addEventListener("load", function() {
+
+    setTimeout(function() {
+
+        const loading =
+            document.getElementById("loading");
+
+        const main =
+            document.getElementById("main");
+
+        loading.style.opacity = "0";
+
+        loading.style.visibility = "hidden";
+
+        main.classList.add("show");
+
+    }, 2600);
+
+});
+
+
+/* =====================================================
+   HIỆU ỨNG GÕ CHỮ
+===================================================== */
+
+const typingText =
+    document.getElementById("typing-text");
+
+const text =
+    "định vị + hỗ trợ kéo tâm";
+
+let textIndex = 0;
+
+let deleting = false;
+
+function typingEffect() {
+
+    if (!deleting) {
+
+        typingText.textContent =
+            text.substring(
+                0,
+                textIndex + 1
+            );
+
+        textIndex++;
+
+        if (textIndex >= text.length) {
+
+            deleting = true;
+
+            setTimeout(
+                typingEffect,
+                1200
+            );
+
+            return;
+        }
+
+    } else {
+
+        typingText.textContent =
+            text.substring(
+                0,
+                textIndex - 1
+            );
+
+        textIndex--;
+
+        if (textIndex <= 0) {
+
+            deleting = false;
+
+        }
+
+    }
+
+    setTimeout(
+        typingEffect,
+        deleting ? 70 : 100
+    );
+
+}
+
+typingEffect();
+
+
+/* =====================================================
+   TUYẾT
+===================================================== */
+
+const snowContainer =
+    document.getElementById("snow-container");
+
+function createSnow() {
+
+    const snow =
+        document.createElement("div");
+
+    snow.className =
+        "snow";
+
+    snow.textContent =
+        "❄";
+
+    snow.style.left =
+        Math.random() * 100 + "vw";
+
+    snow.style.fontSize =
+        (Math.random() * 10 + 8) + "px";
+
+    snow.style.opacity =
+        Math.random() * 0.7 + 0.3;
+
+    snow.style.animationDuration =
+        (Math.random() * 5 + 5) + "s";
+
+    snowContainer.appendChild(snow);
+
+    setTimeout(function() {
+
+        snow.remove();
+
+    }, 11000);
+
+}
+
+setInterval(
+    createSnow,
+    150
+);
+
+</script>
+
+</body>
+  </html>
