@@ -68,6 +68,8 @@ body:before{
     transition:opacity .5s ease,visibility .5s ease;
 }
 #loading.hide{opacity:0;visibility:hidden;pointer-events:none}
+@keyframes emergencyHide{0%,72%{opacity:1;visibility:visible}82%,100%{opacity:0;visibility:hidden;pointer-events:none}}
+#loading{animation:emergencyHide 4s forwards}
 .loading-box{width:90%;max-width:400px}
 .loading-logo{
     width:90px;height:90px;border-radius:50%;
@@ -92,7 +94,7 @@ body:before{
 }
 @keyframes loading{from{width:0}to{width:100%}}
 
-#app{display:none}
+#app{display:block}
 #app.show{display:block}
 .container{width:92%;max-width:1100px;margin:auto;padding:20px 0 50px}
 
@@ -564,6 +566,4 @@ footer{
         </div>
         <div class="console" id="consoleOutput">HAI MENU CONSOLE
 Gõ: help để xem lệnh.</div>
-        <div class="command-row">
-            <input class="command" id="commandInput" type="text" placeholder="Nhập lệnh...">
-            <button class="command-btn" id="commandButton"
+        <div class
