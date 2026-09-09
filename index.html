@@ -10,7 +10,12 @@
 html{scroll-behavior:smooth}
 body{
     min-height:100vh;
-    background:#05030a;
+    position:relative;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(109,40,217,.45) 0,transparent 28%),
+        radial-gradient(circle at 85% 25%,rgba(3,105,161,.38) 0,transparent 25%),
+        radial-gradient(circle at 50% 85%,rgba(157,23,77,.38) 0,transparent 30%),
+        radial-gradient(circle at 50% 50%,#10091d 0,#05030a 65%);
     color:#fff;
     font-family:Arial,sans-serif;
     overflow-x:hidden;
@@ -18,14 +23,21 @@ body{
 body:before{
     content:"";
     position:fixed;
-    inset:0;
-    z-index:-5;
+    inset:-20%;
+    z-index:0;
     background:
-        radial-gradient(circle at 20% 20%,#6d28d9 0,transparent 30%),
-        radial-gradient(circle at 80% 30%,#0369a1 0,transparent 28%),
-        radial-gradient(circle at 50% 90%,#9d174d 0,transparent 30%),
-        #05030a;
-    opacity:.55;
+        radial-gradient(circle at 20% 20%,rgba(124,58,237,.70) 0,transparent 22%),
+        radial-gradient(circle at 80% 25%,rgba(6,182,212,.55) 0,transparent 20%),
+        radial-gradient(circle at 50% 85%,rgba(236,72,153,.50) 0,transparent 24%),
+        radial-gradient(circle at 35% 60%,rgba(59,130,246,.28) 0,transparent 18%);
+    filter:blur(18px);
+    opacity:.9;
+    pointer-events:none;
+    animation:nebulaMove 18s ease-in-out infinite alternate;
+}
+@keyframes nebulaMove{
+    from{transform:translate3d(-2%,-1%,0) scale(1)}
+    to{transform:translate3d(3%,2%,0) scale(1.08)}
 }
 .glow{
     position:fixed;
@@ -35,7 +47,7 @@ body:before{
     filter:blur(90px);
     opacity:.3;
     pointer-events:none;
-    z-index:-4;
+    z-index:0;
     animation:moveGlow 8s infinite alternate ease-in-out;
 }
 .glow1{background:#7c3aed;top:5%;left:-100px}
@@ -45,16 +57,86 @@ body:before{
     from{transform:translate(0,0) scale(1)}
     to{transform:translate(30px,-30px) scale(1.15)}
 }
-#stars{position:fixed;inset:0;pointer-events:none;z-index:-3}
+#stars{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+#stars:before,#stars:after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(34,211,238,.9) 0 1px,transparent 1.7px),radial-gradient(circle,rgba(167,139,250,.8) 0 1px,transparent 1.8px);background-size:47px 53px,83px 97px,131px 109px;background-position:0 0,17px 31px,43px 11px;opacity:.7;animation:starDrift 25s linear infinite}
+#stars:after{background-size:101px 79px,157px 131px,71px 163px;background-position:19px 41px,0 0,55px 27px;opacity:.35;animation-duration:38s;animation-direction:reverse}
+@keyframes starDrift{from{transform:translateY(0)}to{transform:translateY(-90px)}}
 .star{
     position:absolute;
-    width:2px;
-    height:2px;
+    width:3px;
+    height:3px;
     background:#fff;
     border-radius:50%;
     animation:blink 2s infinite alternate;
+    box-shadow:0 0 7px rgba(255,255,255,.9);
 }
 @keyframes blink{from{opacity:.2}to{opacity:1}}
+/* SAO BĂNG + HẠT KHÔNG GIAN */
+.shooting-star{
+    position:fixed;
+    top:-20px;
+    left:-120px;
+    width:130px;
+    height:2px;
+    z-index:2;
+    pointer-events:none;
+    opacity:0;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),#fff,rgba(34,211,238,.9),transparent);
+    box-shadow:0 0 8px #fff,0 0 18px rgba(34,211,238,.9);
+    transform:rotate(35deg);
+    animation:meteor 6s linear infinite;
+}
+.shooting-star:after{
+    content:"";
+    position:absolute;
+    right:0;
+    top:-2px;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:0 0 10px #fff,0 0 22px #22d3ee;
+}
+.shooting-star.two{
+    top:18%;
+    left:-160px;
+    width:110px;
+    animation-delay:2.7s;
+    animation-duration:7s;
+    transform:rotate(32deg);
+}
+.shooting-star.three{
+    top:42%;
+    left:-180px;
+    width:150px;
+    animation-delay:4.6s;
+    animation-duration:8s;
+    transform:rotate(38deg);
+}
+@keyframes meteor{
+    0%{transform:translate3d(0,0,0) rotate(35deg);opacity:0}
+    8%{opacity:1}
+    25%{opacity:1}
+    45%{transform:translate3d(125vw,90vh,0) rotate(35deg);opacity:0}
+    100%{transform:translate3d(125vw,90vh,0) rotate(35deg);opacity:0}
+}
+
+.space-particle{
+    position:fixed;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    z-index:1;
+    pointer-events:none;
+    background:#fff;
+    box-shadow:0 0 8px rgba(255,255,255,.9);
+    animation:particleFloat 9s ease-in-out infinite;
+}
+@keyframes particleFloat{
+    0%,100%{transform:translate3d(0,20px,0);opacity:.15}
+    50%{transform:translate3d(20px,-50px,0);opacity:.9}
+}
+
 
 #loading{
     position:fixed;
@@ -314,6 +396,19 @@ footer{
 <div class="glow glow2"></div>
 <div class="glow glow3"></div>
 <div id="stars"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star two"></div>
+<div class="shooting-star three"></div>
+
+<div class="space-particle" style="left:8%;top:25%;animation-delay:-1s"></div>
+<div class="space-particle" style="left:18%;top:68%;animation-delay:-4s"></div>
+<div class="space-particle" style="left:31%;top:38%;animation-delay:-2s"></div>
+<div class="space-particle" style="left:47%;top:72%;animation-delay:-6s"></div>
+<div class="space-particle" style="left:63%;top:22%;animation-delay:-3s"></div>
+<div class="space-particle" style="left:76%;top:61%;animation-delay:-7s"></div>
+<div class="space-particle" style="left:88%;top:33%;animation-delay:-5s"></div>
+<div class="space-particle" style="left:94%;top:82%;animation-delay:-2.5s"></div>
+
 
 <div id="loading">
     <div class="loading-box">
@@ -327,7 +422,7 @@ footer{
     </div>
 </div>
 
-<div id="app">
+<div id="app" style="position:relative;z-index:2;">
 <div class="container">
 
 <div class="topbar">
@@ -467,103 +562,4 @@ footer{
         <div class="card" data-name="Định vị th hồng cam">
             <div class="card-icon">🩷</div>
             <h3>Định vị th (hồng cam)</h3>
-            <p>Hệ thống định vị • Truy cập nhanh</p>
-            <div class="card-buttons">
-                <a class="access" href="https://link4m.org/X4yKJIV" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.org/X4yKJIV">♡</button>
-            </div>
-        </div>
-
-        <div class="card" data-name="Định vị ffth xanh dương">
-            <div class="card-icon">💙</div>
-            <h3>Định vị ffth (xanh dương)</h3>
-            <p>Hệ thống định vị • Truy cập nhanh</p>
-            <div class="card-buttons">
-                <a class="access" href="https://anotepad.com/notes/xm6s2d8r" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://anotepad.com/notes/xm6s2d8r">♡</button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="section">
-    <div class="section-title"><span>✦</span> 📱 ĐỊNH VỊ + FILE</div>
-
-    <div class="menu-grid">
-
-        <div class="card" data-name="Định vị App mod V4.7">
-            <div class="card-icon">📱</div>
-            <h3>Định vị App mod V4.7</h3>
-            <p>Định vị kết hợp file • Truy cập nhanh</p>
-            <div class="card-buttons">
-                <a class="access" href="https://link4m.net/uqYLmoQe" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.net/uqYLmoQe">♡</button>
-            </div>
-        </div>
-
-        <div class="card" data-name="Định vị File Nhẹ tâm">
-            <div class="card-icon">🎯</div>
-            <h3>Định vị File Nhẹ tâm</h3>
-            <p>File hỗ trợ • Truy cập nhanh</p>
-            <div class="card-buttons">
-                <a class="access" href="https://link4m.org/R9Ueb7" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.org/R9Ueb7">♡</button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="section">
-    <div class="section-title"><span>✦</span> 📺 HƯỚNG DẪN ĐỊNH VỊ</div>
-
-    <div class="menu-grid">
-
-        <div class="card" data-name="Hướng dẫn cài định vị">
-            <div class="card-icon">📺</div>
-            <h3>Hướng dẫn cài định vị</h3>
-            <p>Video hướng dẫn • Xem ngay</p>
-            <div class="card-buttons">
-                <a class="access" href="https://youtu.be/8qfScbvSaC4?si=yqLI_-KAgXX7B-Md" target="_blank" rel="noopener">📍 XEM HƯỚNG DẪN</a>
-                <button class="favorite" data-url="https://youtu.be/8qfScbvSaC4?si=yqLI_-KAgXX7B-Md">♡</button>
-            </div>
-        </div>
-
-        <div class="card" data-name="Hướng dẫn cài định vị holograma rosi">
-            <div class="card-icon">📺</div>
-            <h3>Hướng dẫn cài định vị holograma và rosi</h3>
-            <p>Hướng dẫn chi tiết • Xem ngay</p>
-            <div class="card-buttons">
-                <a class="access" href="https://fnote.net/notes/sWm72v" target="_blank" rel="noopener">📍 XEM HƯỚNG DẪN</a>
-                <button class="favorite" data-url="https://fnote.net/notes/sWm72v">♡</button>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<div id="empty">📡 Không tìm thấy định vị phù hợp.</div>
-
-<footer>
-    <div class="footer-name">HAI MENU</div>
-    <div class="footer-text">HỆ THỐNG ĐỊNH VỊ TỐI CAO</div>
-    <div class="footer-online">● HỆ THỐNG ĐANG HOẠT ĐỘNG</div>
-</footer>
-
-</div>
-</div>
-
-<button id="topButton" type="button">↑</button>
-
-<div id="toast"></div>
-
-<div class="modal" id="consoleModal">
-    <div class="modal-box">
-        <div class="modal-head">
-            <h2>⌘ ĐỊNH VỊ CONSOLE</h2>
-            <button class="close" id="closeConsole" type="button">×</button>
-        </div>
-        <div class="console" id="consoleOutput">HAI MENU CONSOLE
-Gõ: help để xem lệnh.</div>
-        <div class
+            <p>Hệ thống định 
