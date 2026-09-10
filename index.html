@@ -8,6 +8,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+
 body{
     min-height:100vh;
     position:relative;
@@ -20,6 +21,7 @@ body{
     font-family:Arial,sans-serif;
     overflow-x:hidden;
 }
+
 body:before{
     content:"";
     position:fixed;
@@ -35,10 +37,12 @@ body:before{
     pointer-events:none;
     animation:nebulaMove 18s ease-in-out infinite alternate;
 }
+
 @keyframes nebulaMove{
     from{transform:translate3d(-2%,-1%,0) scale(1)}
     to{transform:translate3d(3%,2%,0) scale(1.08)}
 }
+
 .glow{
     position:fixed;
     width:250px;
@@ -50,17 +54,51 @@ body:before{
     z-index:0;
     animation:moveGlow 8s infinite alternate ease-in-out;
 }
+
 .glow1{background:#7c3aed;top:5%;left:-100px}
 .glow2{background:#06b6d4;right:-100px;top:45%;animation-delay:2s}
 .glow3{background:#ec4899;bottom:-100px;left:35%;animation-delay:4s}
+
 @keyframes moveGlow{
     from{transform:translate(0,0) scale(1)}
     to{transform:translate(30px,-30px) scale(1.15)}
 }
-#stars{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
-#stars:before,#stars:after{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px),radial-gradient(circle,rgba(34,211,238,.9) 0 1px,transparent 1.7px),radial-gradient(circle,rgba(167,139,250,.8) 0 1px,transparent 1.8px);background-size:47px 53px,83px 97px,131px 109px;background-position:0 0,17px 31px,43px 11px;opacity:.7;animation:starDrift 25s linear infinite}
-#stars:after{background-size:101px 79px,157px 131px,71px 163px;background-position:19px 41px,0 0,55px 27px;opacity:.35;animation-duration:38s;animation-direction:reverse}
-@keyframes starDrift{from{transform:translateY(0)}to{transform:translateY(-90px)}}
+
+#stars{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:1;
+    overflow:hidden
+}
+
+#stars:before,#stars:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px),
+        radial-gradient(circle,rgba(34,211,238,.9) 0 1px,transparent 1.7px),
+        radial-gradient(circle,rgba(167,139,250,.8) 0 1px,transparent 1.8px);
+    background-size:47px 53px,83px 97px,131px 109px;
+    background-position:0 0,17px 31px,43px 11px;
+    opacity:.7;
+    animation:starDrift 25s linear infinite
+}
+
+#stars:after{
+    background-size:101px 79px,157px 131px,71px 163px;
+    background-position:19px 41px,0 0,55px 27px;
+    opacity:.35;
+    animation-duration:38s;
+    animation-direction:reverse
+}
+
+@keyframes starDrift{
+    from{transform:translateY(0)}
+    to{transform:translateY(-90px)}
+}
+
 .star{
     position:absolute;
     width:3px;
@@ -70,8 +108,14 @@ body:before{
     animation:blink 2s infinite alternate;
     box-shadow:0 0 7px rgba(255,255,255,.9);
 }
-@keyframes blink{from{opacity:.2}to{opacity:1}}
+
+@keyframes blink{
+    from{opacity:.2}
+    to{opacity:1}
+}
+
 /* SAO BĂNG + HẠT KHÔNG GIAN */
+
 .shooting-star{
     position:fixed;
     top:-20px;
@@ -81,11 +125,19 @@ body:before{
     z-index:2;
     pointer-events:none;
     opacity:0;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),#fff,rgba(34,211,238,.9),transparent);
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.15),
+        #fff,
+        rgba(34,211,238,.9),
+        transparent
+    );
     box-shadow:0 0 8px #fff,0 0 18px rgba(34,211,238,.9);
     transform:rotate(35deg);
     animation:meteor 6s linear infinite;
 }
+
 .shooting-star:after{
     content:"";
     position:absolute;
@@ -97,6 +149,7 @@ body:before{
     background:#fff;
     box-shadow:0 0 10px #fff,0 0 22px #22d3ee;
 }
+
 .shooting-star.two{
     top:18%;
     left:-160px;
@@ -105,6 +158,7 @@ body:before{
     animation-duration:7s;
     transform:rotate(32deg);
 }
+
 .shooting-star.three{
     top:42%;
     left:-180px;
@@ -113,12 +167,22 @@ body:before{
     animation-duration:8s;
     transform:rotate(38deg);
 }
+
 @keyframes meteor{
-    0%{transform:translate3d(0,0,0) rotate(35deg);opacity:0}
+    0%{
+        transform:translate3d(0,0,0) rotate(35deg);
+        opacity:0
+    }
     8%{opacity:1}
     25%{opacity:1}
-    45%{transform:translate3d(125vw,90vh,0) rotate(35deg);opacity:0}
-    100%{transform:translate3d(125vw,90vh,0) rotate(35deg);opacity:0}
+    45%{
+        transform:translate3d(125vw,90vh,0) rotate(35deg);
+        opacity:0
+    }
+    100%{
+        transform:translate3d(125vw,90vh,0) rotate(35deg);
+        opacity:0
+    }
 }
 
 .space-particle{
@@ -132,11 +196,17 @@ body:before{
     box-shadow:0 0 8px rgba(255,255,255,.9);
     animation:particleFloat 9s ease-in-out infinite;
 }
-@keyframes particleFloat{
-    0%,100%{transform:translate3d(0,20px,0);opacity:.15}
-    50%{transform:translate3d(20px,-50px,0);opacity:.9}
-}
 
+@keyframes particleFloat{
+    0%,100%{
+        transform:translate3d(0,20px,0);
+        opacity:.15
+    }
+    50%{
+        transform:translate3d(20px,-50px,0);
+        opacity:.9
+    }
+}
 
 #loading{
     position:fixed;
@@ -149,72 +219,182 @@ body:before{
     text-align:center;
     transition:opacity .5s ease,visibility .5s ease;
 }
-#loading.hide{opacity:0;visibility:hidden;pointer-events:none}
-@keyframes emergencyHide{0%,72%{opacity:1;visibility:visible}82%,100%{opacity:0;visibility:hidden;pointer-events:none}}
-#loading{animation:emergencyHide 4s forwards}
-.loading-box{width:90%;max-width:400px}
+
+#loading.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none
+}
+
+@keyframes emergencyHide{
+    0%,72%{
+        opacity:1;
+        visibility:visible
+    }
+    82%,100%{
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none
+    }
+}
+
+#loading{
+    animation:emergencyHide 4s forwards
+}
+
+.loading-box{
+    width:90%;
+    max-width:400px
+}
+
 .loading-logo{
-    width:90px;height:90px;border-radius:50%;
-    object-fit:cover;border:3px solid #fff;
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #fff;
     box-shadow:0 0 25px #8b5cf6;
     animation:spin 2s linear infinite;
 }
-.loading-logo.hidden{display:none}
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+.loading-logo.hidden{
+    display:none
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
 .loading-title{
-    margin-top:25px;font-size:38px;font-weight:bold;letter-spacing:5px
+    margin-top:25px;
+    font-size:38px;
+    font-weight:bold;
+    letter-spacing:5px
 }
-.loading-text{margin-top:12px;color:#aaa}
+
+.loading-text{
+    margin-top:12px;
+    color:#aaa
+}
+
 .loading-bar{
-    width:100%;height:8px;margin-top:30px;
-    background:#19151f;border-radius:20px;overflow:hidden
+    width:100%;
+    height:8px;
+    margin-top:30px;
+    background:#19151f;
+    border-radius:20px;
+    overflow:hidden
 }
+
 .loading-progress{
-    width:0;height:100%;
+    width:0;
+    height:100%;
     background:linear-gradient(90deg,#7c3aed,#06b6d4,#ec4899);
     animation:loading 2s forwards
 }
-@keyframes loading{from{width:0}to{width:100%}}
 
-#app{display:block}
-#app.show{display:block}
-.container{width:92%;max-width:1100px;margin:auto;padding:20px 0 50px}
+@keyframes loading{
+    from{width:0}
+    to{width:100%}
+}
+
+#app{
+    display:block
+}
+
+#app.show{
+    display:block
+}
+
+.container{
+    width:92%;
+    max-width:1100px;
+    margin:auto;
+    padding:20px 0 50px
+}
 
 .topbar{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:15px 18px;border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 18px;
+    border-radius:18px;
     background:rgba(20,15,30,.8);
     border:1px solid rgba(255,255,255,.1);
     backdrop-filter:blur(15px);
 }
-.logo-name{font-size:18px;font-weight:bold;letter-spacing:3px}
-.online{font-size:11px;color:#22c55e}
-.online span{
-    display:inline-block;width:8px;height:8px;margin-right:5px;
-    background:#22c55e;border-radius:50%;box-shadow:0 0 10px #22c55e
+
+.logo-name{
+    font-size:18px;
+    font-weight:bold;
+    letter-spacing:3px
 }
 
-.hero{text-align:center;padding:50px 0 30px}
-.logo-wrap{position:relative;width:150px;height:150px;margin:auto}
+.online{
+    font-size:11px;
+    color:#22c55e
+}
+
+.online span{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    margin-right:5px;
+    background:#22c55e;
+    border-radius:50%;
+    box-shadow:0 0 10px #22c55e
+}
+
+.hero{
+    text-align:center;
+    padding:50px 0 30px
+}
+
+.logo-wrap{
+    position:relative;
+    width:150px;
+    height:150px;
+    margin:auto
+}
+
 .hero-logo{
-    position:absolute;width:100px;height:100px;left:25px;top:25px;
-    border-radius:50%;object-fit:cover;border:3px solid #fff;
+    position:absolute;
+    width:100px;
+    height:100px;
+    left:25px;
+    top:25px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #fff;
     box-shadow:0 0 20px #7c3aed,0 0 50px #06b6d4;
 }
-.hero-logo.hidden{display:none}
+
+.hero-logo.hidden{
+    display:none
+}
+
 .orbit{
-    position:absolute;inset:0;
+    position:absolute;
+    inset:0;
     border:1px solid rgba(139,92,246,.6);
-    border-radius:50%;animation:spin 8s linear infinite
+    border-radius:50%;
+    animation:spin 8s linear infinite
 }
+
 .orbit2{
-    position:absolute;inset:15px;
+    position:absolute;
+    inset:15px;
     border:1px solid rgba(6,182,212,.5);
-    border-radius:50%;animation:spin 5s linear infinite reverse
+    border-radius:50%;
+    animation:spin 5s linear infinite reverse
 }
+
 .hero h1{
-    margin-top:25px;font-size:clamp(40px,10vw,75px);
-    letter-spacing:5px;font-weight:900;
+    margin-top:25px;
+    font-size:clamp(40px,10vw,75px);
+    letter-spacing:5px;
+    font-weight:900;
     background:linear-gradient(90deg,#fff,#a78bfa,#22d3ee,#f472b6,#fff);
     background-size:300%;
     -webkit-background-clip:text;
@@ -222,171 +402,446 @@ body:before{
     color:transparent;
     animation:gradientText 5s linear infinite;
 }
-@keyframes gradientText{from{background-position:0%}to{background-position:300%}}
-.subtitle{margin-top:10px;color:#aaa;font-size:15px}
-.typing{margin-top:12px;color:#22d3ee;min-height:20px}
+
+@keyframes gradientText{
+    from{background-position:0%}
+    to{background-position:300%}
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#aaa;
+    font-size:15px
+}
+
+.typing{
+    margin-top:12px;
+    color:#22d3ee;
+    min-height:20px
+}
 
 .radar{
-    position:relative;width:150px;height:150px;margin:30px auto;
+    position:relative;
+    width:150px;
+    height:150px;
+    margin:30px auto;
     border-radius:50%;
     border:1px solid rgba(34,211,238,.5);
     background:radial-gradient(circle,rgba(34,211,238,.15),transparent 70%);
     overflow:hidden;
 }
+
 .radar:before{
-    content:"";position:absolute;inset:25px;
-    border:1px solid rgba(34,211,238,.3);border-radius:50%
+    content:"";
+    position:absolute;
+    inset:25px;
+    border:1px solid rgba(34,211,238,.3);
+    border-radius:50%
 }
+
 .radar:after{
-    content:"";position:absolute;inset:50px;
-    border:1px solid rgba(34,211,238,.3);border-radius:50%
+    content:"";
+    position:absolute;
+    inset:50px;
+    border:1px solid rgba(34,211,238,.3);
+    border-radius:50%
 }
+
 .radar-line{
-    position:absolute;width:50%;height:2px;background:#22d3ee;
-    left:50%;top:50%;transform-origin:left;
+    position:absolute;
+    width:50%;
+    height:2px;
+    background:#22d3ee;
+    left:50%;
+    top:50%;
+    transform-origin:left;
     animation:radar 3s linear infinite
 }
-@keyframes radar{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+@keyframes radar{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+}
+
 .radar-dot{
-    position:absolute;width:7px;height:7px;background:#22d3ee;
-    border-radius:50%;box-shadow:0 0 12px #22d3ee;
+    position:absolute;
+    width:7px;
+    height:7px;
+    background:#22d3ee;
+    border-radius:50%;
+    box-shadow:0 0 12px #22d3ee;
     animation:dotPulse 1.4s infinite alternate
 }
-@keyframes dotPulse{from{opacity:.35;transform:scale(.7)}to{opacity:1;transform:scale(1.2)}}
-.dot1{left:100px;top:35px}.dot2{left:45px;top:95px}.dot3{left:110px;top:75px}
 
-.stats{
-    display:grid;grid-template-columns:repeat(3,1fr);
-    gap:12px;margin-bottom:25px
+@keyframes dotPulse{
+    from{
+        opacity:.35;
+        transform:scale(.7)
+    }
+    to{
+        opacity:1;
+        transform:scale(1.2)
+    }
 }
+
+.dot1{left:100px;top:35px}
+.dot2{left:45px;top:95px}
+.dot3{left:110px;top:75px}
+    .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:25px
+}
+
 .stat{
-    padding:18px 5px;text-align:center;border-radius:18px;
+    padding:18px 5px;
+    text-align:center;
+    border-radius:18px;
     background:rgba(255,255,255,.04);
     border:1px solid rgba(255,255,255,.08)
 }
-.stat-number{font-size:25px;font-weight:bold}
-.stat-label{margin-top:5px;color:#888;font-size:11px}
+
+.stat-number{
+    font-size:25px;
+    font-weight:bold
+}
+
+.stat-label{
+    margin-top:5px;
+    color:#888;
+    font-size:11px
+}
 
 .tools{
-    display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap
+    display:flex;
+    gap:8px;
+    margin-bottom:12px;
+    flex-wrap:wrap
 }
+
 .tool{
-    flex:1;min-width:130px;padding:10px 12px;border-radius:12px;
-    color:#fff;background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.1);font-weight:bold
+    flex:1;
+    min-width:130px;
+    padding:10px 12px;
+    border-radius:12px;
+    color:#fff;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    font-weight:bold
 }
-.tool.active{border-color:#22d3ee;box-shadow:0 0 15px rgba(34,211,238,.18)}
+
+.tool.active{
+    border-color:#22d3ee;
+    box-shadow:0 0 15px rgba(34,211,238,.18)
+}
+
 .search{
-    width:100%;padding:15px 17px;color:#fff;
+    width:100%;
+    padding:15px 17px;
+    color:#fff;
     background:rgba(15,10,25,.9);
     border:1px solid rgba(255,255,255,.1);
-    border-radius:15px;outline:none;font-size:14px
+    border-radius:15px;
+    outline:none;
+    font-size:14px
 }
-.search:focus{border-color:#8b5cf6}
-.search::placeholder{color:#777}
 
-.section{margin-top:30px}
-.section-title{margin-bottom:15px;font-size:18px;font-weight:bold}
-.section-title span{color:#22d3ee}
-.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.search:focus{
+    border-color:#8b5cf6
+}
+
+.search::placeholder{
+    color:#777
+}
+
+.section{
+    margin-top:30px
+}
+
+.section-title{
+    margin-bottom:15px;
+    font-size:18px;
+    font-weight:bold
+}
+
+.section-title span{
+    color:#22d3ee
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px
+}
+
 .card{
-    position:relative;padding:20px;border-radius:20px;
+    position:relative;
+    padding:20px;
+    border-radius:20px;
     background:rgba(255,255,255,.045);
     border:1px solid rgba(255,255,255,.09);
     transition:.3s
 }
+
 .card:hover{
     transform:translateY(-5px);
     border-color:rgba(34,211,238,.5);
     box-shadow:0 15px 40px rgba(0,0,0,.4)
 }
-.card.hidden{display:none}
-.card.favorite-card{border-color:rgba(244,114,182,.55)}
-.card-icon{font-size:27px;margin-bottom:10px}
-.card h3{font-size:16px;line-height:1.4}
-.card p{margin-top:8px;color:#888;font-size:12px}
-.card-buttons{display:flex;gap:8px;margin-top:16px}
+
+.card.hidden{
+    display:none
+}
+
+.card.favorite-card{
+    border-color:rgba(244,114,182,.55)
+}
+
+.card-icon{
+    font-size:27px;
+    margin-bottom:10px
+}
+
+.card h3{
+    font-size:16px;
+    line-height:1.4
+}
+
+.card p{
+    margin-top:8px;
+    color:#888;
+    font-size:12px
+}
+
+.card-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:16px
+}
+
 .access{
-    flex:1;padding:11px 5px;text-align:center;text-decoration:none;
-    color:#fff;border-radius:11px;
+    flex:1;
+    padding:11px 5px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    border-radius:11px;
     background:linear-gradient(90deg,#7c3aed,#2563eb,#06b6d4);
-    font-size:11px;font-weight:bold
+    font-size:11px;
+    font-weight:bold
 }
-.access:active{transform:scale(.98)}
+
+.access:active{
+    transform:scale(.98)
+}
+
 .favorite{
-    width:44px;border:0;border-radius:11px;color:#fff;
-    background:rgba(255,255,255,.08);font-size:18px
+    width:44px;
+    border:0;
+    border-radius:11px;
+    color:#fff;
+    background:rgba(255,255,255,.08);
+    font-size:18px
 }
-.favorite.active{color:#ff4fa3;background:rgba(236,72,153,.15)}
-#empty{display:none;text-align:center;padding:35px 10px;color:#777}
+
+.favorite.active{
+    color:#ff4fa3;
+    background:rgba(236,72,153,.15)
+}
+
+#empty{
+    display:none;
+    text-align:center;
+    padding:35px 10px;
+    color:#777
+}
+
 footer{
-    margin-top:60px;padding:30px 0;text-align:center;
+    margin-top:60px;
+    padding:30px 0;
+    text-align:center;
     border-top:1px solid rgba(255,255,255,.08)
 }
-.footer-name{font-size:20px;font-weight:bold;letter-spacing:4px}
-.footer-text{margin-top:8px;color:#777;font-size:12px}
-.footer-online{margin-top:15px;color:#22c55e;font-size:11px}
+
+.footer-name{
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:4px
+}
+
+.footer-text{
+    margin-top:8px;
+    color:#777;
+    font-size:12px
+}
+
+.footer-online{
+    margin-top:15px;
+    color:#22c55e;
+    font-size:11px
+}
 
 #topButton{
-    position:fixed;right:18px;bottom:18px;width:45px;height:45px;
-    border:1px solid rgba(255,255,255,.1);border-radius:50%;
-    color:#fff;background:#17121f;display:none;z-index:50
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:45px;
+    height:45px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:50%;
+    color:#fff;
+    background:#17121f;
+    display:none;
+    z-index:50
 }
+
 #toast{
-    position:fixed;left:50%;bottom:25px;transform:translateX(-50%);
-    padding:12px 18px;background:#18121f;
-    border:1px solid rgba(34,211,238,.3);border-radius:12px;
-    opacity:0;pointer-events:none;transition:.3s;z-index:10000;
-    max-width:90%;text-align:center
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%);
+    padding:12px 18px;
+    background:#18121f;
+    border:1px solid rgba(34,211,238,.3);
+    border-radius:12px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:10000;
+    max-width:90%;
+    text-align:center
 }
-#toast.show{opacity:1}
+
+#toast.show{
+    opacity:1
+}
 
 .modal{
-    position:fixed;inset:0;background:rgba(0,0,0,.75);
-    display:none;align-items:center;justify-content:center;
-    z-index:9000;padding:20px
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9000;
+    padding:20px
 }
-.modal.show{display:flex}
+
+.modal.show{
+    display:flex
+}
+
 .modal-box{
-    width:100%;max-width:520px;background:#0d0a13;
-    border:1px solid rgba(34,211,238,.25);border-radius:20px;
-    padding:20px;box-shadow:0 20px 80px rgba(0,0,0,.6)
+    width:100%;
+    max-width:520px;
+    background:#0d0a13;
+    border:1px solid rgba(34,211,238,.25);
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 20px 80px rgba(0,0,0,.6)
 }
-.modal-head{display:flex;justify-content:space-between;align-items:center}
-.modal-head h2{font-size:18px}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center
+}
+
+.modal-head h2{
+    font-size:18px
+}
+
 .close{
-    width:35px;height:35px;border:0;border-radius:10px;
-    color:#fff;background:rgba(255,255,255,.08);font-size:18px
+    width:35px;
+    height:35px;
+    border:0;
+    border-radius:10px;
+    color:#fff;
+    background:rgba(255,255,255,.08);
+    font-size:18px
 }
+
 .console{
-    margin-top:15px;background:#030305;border-radius:14px;
-    padding:15px;font-family:monospace;font-size:12px;
-    line-height:1.7;color:#9efcff;min-height:180px;
-    white-space:pre-wrap;overflow:auto
+    margin-top:15px;
+    background:#030305;
+    border-radius:14px;
+    padding:15px;
+    font-family:monospace;
+    font-size:12px;
+    line-height:1.7;
+    color:#9efcff;
+    min-height:180px;
+    white-space:pre-wrap;
+    overflow:auto
 }
-.command-row{display:flex;gap:8px;margin-top:10px}
+
+.command-row{
+    display:flex;
+    gap:8px;
+    margin-top:10px
+}
+
 .command{
-    flex:1;background:#05030a;color:#fff;border:1px solid #292332;
-    border-radius:10px;padding:11px;outline:none
+    flex:1;
+    background:#05030a;
+    color:#fff;
+    border:1px solid #292332;
+    border-radius:10px;
+    padding:11px;
+    outline:none
 }
+
 .command-btn{
-    border:0;border-radius:10px;padding:0 15px;
-    background:#7c3aed;color:#fff;font-weight:bold
+    border:0;
+    border-radius:10px;
+    padding:0 15px;
+    background:#7c3aed;
+    color:#fff;
+    font-weight:bold
 }
 
 @media(max-width:700px){
-    .container{width:92%}
-    .menu-grid{grid-template-columns:1fr}
-    .hero{padding-top:35px}
-    .hero h1{font-size:42px}
-    .stats{gap:7px}
-    .stat-number{font-size:21px}
-    .card{padding:18px}
+    .container{
+        width:92%
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr
+    }
+
+    .hero{
+        padding-top:35px
+    }
+
+    .hero h1{
+        font-size:42px
+    }
+
+    .stats{
+        gap:7px
+    }
+
+    .stat-number{
+        font-size:21px
+    }
+
+    .card{
+        padding:18px
+    }
 }
+
 @media(max-width:380px){
-    .hero h1{font-size:34px;letter-spacing:3px}
-    .loading-title{font-size:30px}
+    .hero h1{
+        font-size:34px;
+        letter-spacing:3px
+    }
+
+    .loading-title{
+        font-size:30px
+    }
 }
+
 </style>
 </head>
 
@@ -395,7 +850,9 @@ footer{
 <div class="glow glow1"></div>
 <div class="glow glow2"></div>
 <div class="glow glow3"></div>
+
 <div id="stars"></div>
+
 <div class="shooting-star"></div>
 <div class="shooting-star two"></div>
 <div class="shooting-star three"></div>
@@ -409,13 +866,19 @@ footer{
 <div class="space-particle" style="left:88%;top:33%;animation-delay:-5s"></div>
 <div class="space-particle" style="left:94%;top:82%;animation-delay:-2.5s"></div>
 
-
 <div id="loading">
     <div class="loading-box">
-        <img src="1000004086.jpg" class="loading-logo" alt="HAI MENU"
+        <img src="1000004086.jpg"
+             class="loading-logo"
+             alt="HAI MENU"
              onerror="this.classList.add('hidden')">
+
         <div class="loading-title">HAI MENU</div>
-        <div class="loading-text">Đang khởi động hệ thống định vị...</div>
+
+        <div class="loading-text">
+            Đang khởi động hệ thống định vị...
+        </div>
+
         <div class="loading-bar">
             <div class="loading-progress"></div>
         </div>
@@ -423,24 +886,38 @@ footer{
 </div>
 
 <div id="app" style="position:relative;z-index:2;">
+
 <div class="container">
 
 <div class="topbar">
     <div class="logo-name">HAI MENU</div>
-    <div class="online"><span></span>ONLINE</div>
+
+    <div class="online">
+        <span></span>ONLINE
+    </div>
 </div>
 
 <section class="hero">
+
     <div class="logo-wrap">
         <div class="orbit"></div>
         <div class="orbit2"></div>
-        <img src="1000004086.jpg" class="hero-logo" alt="HAI MENU"
+
+        <img src="1000004086.jpg"
+             class="hero-logo"
+             alt="HAI MENU"
              onerror="this.classList.add('hidden')">
     </div>
 
     <h1>HAI MENU</h1>
-    <div class="subtitle">✦ HỆ THỐNG ĐỊNH VỊ TỐI CAO ✦</div>
-    <div class="typing" id="typing">Đang kết nối hệ thống...</div>
+
+    <div class="subtitle">
+        ✦ HỆ THỐNG ĐỊNH VỊ TỐI CAO ✦
+    </div>
+
+    <div class="typing" id="typing">
+        Đang kết nối hệ thống...
+    </div>
 
     <div class="radar">
         <div class="radar-line"></div>
@@ -448,34 +925,53 @@ footer{
         <div class="radar-dot dot2"></div>
         <div class="radar-dot dot3"></div>
     </div>
+
 </section>
 
 <div class="stats">
+
     <div class="stat">
         <div class="stat-number" id="itemCount">14</div>
         <div class="stat-label">Định vị</div>
     </div>
+
     <div class="stat">
         <div class="stat-number">3</div>
         <div class="stat-label">Phân loại</div>
     </div>
+
     <div class="stat">
         <div class="stat-number" id="favoriteCount">0</div>
         <div class="stat-label">Yêu thích</div>
     </div>
+
 </div>
 
 <div class="tools">
-    <button class="tool" id="favoriteFilter">☆ Chỉ yêu thích</button>
-    <button class="tool" id="consoleButton">⌘ ĐỊNH VỊ CONSOLE</button>
-    <button class="tool" id="noticeButton">🔔 Thông báo</button>
+
+    <button class="tool" id="favoriteFilter">
+        ☆ Chỉ yêu thích
+    </button>
+
+    <button class="tool" id="consoleButton">
+        ⌘ ĐỊNH VỊ CONSOLE
+    </button>
+
+    <button class="tool" id="noticeButton">
+        🔔 Thông báo
+    </button>
+
 </div>
 
-<input type="search" id="search" class="search"
+<input type="search"
+       id="search"
+       class="search"
        placeholder="🔎 Tìm kiếm định vị...">
+    <section class="section">
 
-<section class="section">
-    <div class="section-title"><span>✦</span> 📱 ĐỊNH VỊ</div>
+    <div class="section-title">
+        <span>✦</span> 📱 ĐỊNH VỊ
+    </div>
 
     <div class="menu-grid">
 
@@ -483,9 +979,19 @@ footer{
             <div class="card-icon">🔴</div>
             <h3>Định vị ffmax (đỏ đen)</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://link4m.net/tgVzM" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.net/tgVzM">♡</button>
+                <a class="access"
+                   href="https://link4m.net/tgVzM"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.net/tgVzM">
+                    ♡
+                </button>
             </div>
         </div>
 
@@ -493,9 +999,19 @@ footer{
             <div class="card-icon">🔴</div>
             <h3>Định vị ffmax (đen đỏ)</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://link4m.org/MsPWeh" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.org/MsPWeh">♡</button>
+                <a class="access"
+                   href="https://link4m.org/MsPWeh"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.org/MsPWeh">
+                    ♡
+                </button>
             </div>
         </div>
 
@@ -503,9 +1019,19 @@ footer{
             <div class="card-icon">🩷</div>
             <h3>Định vị ffmax (hồng)</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://link4m.org/cw3dJq" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.org/cw3dJq">♡</button>
+                <a class="access"
+                   href="https://link4m.org/cw3dJq"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.org/cw3dJq">
+                    ♡
+                </button>
             </div>
         </div>
 
@@ -513,9 +1039,19 @@ footer{
             <div class="card-icon">❤️</div>
             <h3>Định vị ffmax holograma</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://link4m.net/JyqESHQ" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.net/JyqESHQ">♡</button>
+                <a class="access"
+                   href="https://link4m.net/JyqESHQ"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.net/JyqESHQ">
+                    ♡
+                </button>
             </div>
         </div>
 
@@ -523,9 +1059,19 @@ footer{
             <div class="card-icon">❤️</div>
             <h3>Định vị max rosa</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://link4m.net/LW0RS6C" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.net/LW0RS6C">♡</button>
+                <a class="access"
+                   href="https://link4m.net/LW0RS6C"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.net/LW0RS6C">
+                    ♡
+                </button>
             </div>
         </div>
 
@@ -533,9 +1079,19 @@ footer{
             <div class="card-icon">💙</div>
             <h3>Định vị ffmax (xanh dương)</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://anotepad.com/notes/49r6kfqt" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://anotepad.com/notes/49r6kfqt">♡</button>
+                <a class="access"
+                   href="https://anotepad.com/notes/49r6kfqt"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://anotepad.com/notes/49r6kfqt">
+                    ♡
+                </button>
             </div>
         </div>
 
@@ -543,9 +1099,19 @@ footer{
             <div class="card-icon">❤️</div>
             <h3>Định vị ffmax (bá khí)</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://link4m.net/M6QzhMf" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.net/M6QzhMf">♡</button>
+                <a class="access"
+                   href="https://link4m.net/M6QzhMf"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.net/M6QzhMf">
+                    ♡
+                </button>
             </div>
         </div>
 
@@ -553,13 +1119,888 @@ footer{
             <div class="card-icon">💗</div>
             <h3>Định vị th (hồng)</h3>
             <p>Hệ thống định vị • Truy cập nhanh</p>
+
             <div class="card-buttons">
-                <a class="access" href="https://link4m.org/Dc1eCE" target="_blank" rel="noopener">📍 TRUY CẬP</a>
-                <button class="favorite" data-url="https://link4m.org/Dc1eCE">♡</button>
+                <a class="access"
+                   href="https://link4m.org/Dc1eCE"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.org/Dc1eCE">
+                    ♡
+                </button>
             </div>
         </div>
 
+        <!-- LINK HỒNG CAM -->
         <div class="card" data-name="Định vị th hồng cam">
             <div class="card-icon">🩷</div>
             <h3>Định vị th (hồng cam)</h3>
-            <p>Hệ thống định 
+            <p>Hệ thống định vị • Truy cập nhanh</p>
+
+            <div class="card-buttons">
+                <a class="access"
+                   href="https://link4m.org/X4yKJIV"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.org/X4yKJIV">
+                    ♡
+                </button>
+            </div>
+        </div>
+
+        <div class="card" data-name="Định vị ffth xanh dương">
+            <div class="card-icon">💙</div>
+            <h3>Định vị ffth (xanh dương)</h3>
+            <p>Hệ thống định vị • Truy cập nhanh</p>
+
+            <div class="card-buttons">
+                <a class="access"
+                   href="https://anotepad.com/notes/xm6s2d8r"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://anotepad.com/notes/xm6s2d8r">
+                    ♡
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <span>✦</span> 📱 ĐỊNH VỊ + FILE
+    </div>
+
+    <div class="menu-grid">
+
+        <div class="card" data-name="Định vị App mod V4.7">
+            <div class="card-icon">📱</div>
+            <h3>Định vị App mod V4.7</h3>
+            <p>Định vị kết hợp file • Truy cập nhanh</p>
+
+            <div class="card-buttons">
+                <a class="access"
+                   href="https://link4m.net/uqYLmoQe"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.net/uqYLmoQe">
+                    ♡
+                </button>
+            </div>
+        </div>
+
+        <div class="card" data-name="Định vị File Nhẹ tâm">
+            <div class="card-icon">🎯</div>
+            <h3>Định vị File Nhẹ tâm</h3>
+            <p>File hỗ trợ • Truy cập nhanh</p>
+
+            <div class="card-buttons">
+                <a class="access"
+                   href="https://link4m.org/R9Ueb7"
+                   target="_blank"
+                   rel="noopener">
+                    📍 TRUY CẬP
+                </a>
+
+                <button class="favorite"
+                        data-url="https://link4m.org/R9Ueb7">
+                    ♡
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="section">
+
+    <div class="section-title">
+        <span>✦</span> 📺 HƯỚNG DẪN ĐỊNH VỊ
+    </div>
+
+    <div class="menu-grid">
+
+        <div class="card" data-name="Hướng dẫn cài định vị">
+            <div class="card-icon">📺</div>
+            <h3>Hướng dẫn cài định vị</h3>
+            <p>Video hướng dẫn • Xem ngay</p>
+
+            <div class="card-buttons">
+                <a class="access"
+                   href="https://youtu.be/8qfScbvSaC4?si=yqLI_-KAgXX7B-Md"
+                   target="_blank"
+                   rel="noopener">
+                    📍 XEM HƯỚNG DẪN
+                </a>
+
+                <button class="favorite"
+                        data-url="https://youtu.be/8qfScbvSaC4?si=yqLI_-KAgXX7B-Md">
+                    ♡
+                </button>
+            </div>
+        </div>
+
+        <div class="card" data-name="Hướng dẫn cài định vị holograma rosi">
+            <div class="card-icon">📺</div>
+            <h3>Hướng dẫn cài định vị holograma và rosi</h3>
+            <p>Hướng dẫn chi tiết • Xem ngay</p>
+
+            <div class="card-buttons">
+                <a class="access"
+                   href="https://fnote.net/notes/sWm72v"
+                   target="_blank"
+                   rel="noopener">
+                    📍 XEM HƯỚNG DẪN
+                </a>
+
+                <button class="favorite"
+                        data-url="https://fnote.net/notes/sWm72v">
+                    ♡
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div id="empty">
+    📡 Không tìm thấy định vị phù hợp.
+</div>
+
+<footer>
+    <div class="footer-name">HAI MENU</div>
+    <div class="footer-text">HỆ THỐNG ĐỊNH VỊ TỐI CAO</div>
+    <div class="footer-online">● HỆ THỐNG ĐANG HOẠT ĐỘNG</div>
+</footer>
+
+</div>
+</div>
+
+<button id="topButton" type="button">↑</button>
+
+<div id="toast"></div>
+
+<div class="modal" id="consoleModal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+            <h2>⌘ ĐỊNH VỊ CONSOLE</h2>
+
+            <button class="close"
+                    id="closeConsole"
+                    type="button">
+                ×
+            </button>
+        </div>
+
+        <div class="console"
+             id="consoleOutput">HAI MENU CONSOLE
+Gõ: help để xem lệnh.</div>
+
+        <div class="command-row">
+
+            <input class="command"
+                   id="commandInput"
+                   type="text"
+                   placeholder="Nhập lệnh...">
+
+            <button class="command-btn"
+                    id="commandButton"
+                    type="button">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // @ts-nocheck
+
+(function(){
+
+    "use strict";
+
+    var loading = document.getElementById("loading");
+    var app = document.getElementById("app");
+    var typing = document.getElementById("typing");
+    var search = document.getElementById("search");
+    var empty = document.getElementById("empty");
+    var favoriteCount = document.getElementById("favoriteCount");
+    var topButton = document.getElementById("topButton");
+    var toast = document.getElementById("toast");
+
+    var favoriteFilter = document.getElementById("favoriteFilter");
+    var consoleButton = document.getElementById("consoleButton");
+    var noticeButton = document.getElementById("noticeButton");
+
+    var consoleModal = document.getElementById("consoleModal");
+    var closeConsole = document.getElementById("closeConsole");
+    var consoleOutput = document.getElementById("consoleOutput");
+    var commandInput = document.getElementById("commandInput");
+    var commandButton = document.getElementById("commandButton");
+
+    var cards = Array.prototype.slice.call(
+        document.querySelectorAll(".card")
+    );
+
+    var favoriteButtons = Array.prototype.slice.call(
+        document.querySelectorAll(".favorite")
+    );
+
+    var favorites = [];
+    var favoriteOnly = false;
+    var toastTimer = null;
+
+    try{
+
+        favorites = JSON.parse(
+            localStorage.getItem("haiMenuFavorites") || "[]"
+        );
+
+        if (!Array.isArray(favorites)){
+            favorites = [];
+        }
+
+    }catch(e){
+
+        favorites = [];
+
+    }
+
+    function showToast(){
+
+        var message = arguments[0];
+
+        if (!toast) return;
+
+        toast.textContent = message;
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(function(){
+
+            toast.classList.remove("show");
+
+        },1800);
+
+    }
+
+    function hideLoading(){
+
+        if (!loading ||
+            loading.classList.contains("hide")) return;
+
+        loading.classList.add("hide");
+
+        if (app){
+            app.classList.add("show");
+        }
+
+    }
+
+    setTimeout(hideLoading,1800);
+
+    window.addEventListener("load",function(){
+
+        setTimeout(hideLoading,250);
+
+    });
+
+    /* SAO */
+
+    var stars = document.getElementById("stars");
+
+    if (stars){
+
+        for (var i = 0; i < 120; i++){
+
+            var star = document.createElement("div");
+
+            star.className = "star";
+
+            star.style.left =
+                Math.floor(Math.random() * 100) + "%";
+
+            star.style.top =
+                Math.floor(Math.random() * 100) + "%";
+
+            star.style.opacity =
+                (0.2 + Math.random() * 0.8).toFixed(2);
+
+            star.style.animationDelay =
+                (Math.random() * 2).toFixed(2) + "s";
+
+            stars.appendChild(star);
+
+        }
+
+    }
+
+    /* TIM */
+
+    function updateFavorites(){
+
+        favoriteButtons.forEach(function(){
+
+            var button = arguments[0];
+
+            var url =
+                button.getAttribute("data-url");
+
+            var active =
+                favorites.indexOf(url) !== -1;
+
+            button.classList.toggle(
+                "active",
+                active
+            );
+
+            button.textContent =
+                active ? "♥" : "♡";
+
+        });
+
+        if (favoriteCount){
+
+            favoriteCount.textContent =
+                String(favorites.length);
+
+        }
+
+    }
+
+    function saveFavorites(){
+
+        try{
+
+            localStorage.setItem(
+                "haiMenuFavorites",
+                JSON.stringify(favorites)
+            );
+
+        }catch(e){}
+
+    }
+
+    favoriteButtons.forEach(function(){
+
+        var button = arguments[0];
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                var url =
+                    button.getAttribute("data-url");
+
+                var index =
+                    favorites.indexOf(url);
+
+                if (index === -1){
+
+                    favorites.push(url);
+
+                    showToast(
+                        "⭐ Đã thêm vào yêu thích"
+                    );
+
+                }else{
+
+                    favorites.splice(index,1);
+
+                    showToast(
+                        "☆ Đã bỏ yêu thích"
+                    );
+
+                }
+
+                saveFavorites();
+                updateFavorites();
+                filterCards();
+
+            }
+        );
+
+    });
+
+    /* TIM KIEM */
+
+    function filterCards(){
+
+        var q =
+            (search ? search.value : "")
+            .trim()
+            .toLowerCase();
+
+        var visible = 0;
+
+        cards.forEach(function(){
+
+            var card = arguments[0];
+
+            var name =
+                (
+                    card.getAttribute("data-name")
+                    || card.textContent
+                ).toLowerCase();
+
+            var button =
+                card.querySelector(".favorite");
+
+            var url =
+                button
+                ? button.getAttribute("data-url")
+                : "";
+
+            var isFav =
+                favorites.indexOf(url) !== -1;
+
+            var matchSearch =
+                q === "" ||
+                name.indexOf(q) !== -1;
+
+            var matchFavorite =
+                !favoriteOnly || isFav;
+
+            var show =
+                matchSearch && matchFavorite;
+
+            card.classList.toggle(
+                "hidden",
+                !show
+            );
+
+            card.classList.toggle(
+                "favorite-card",
+                isFav
+            );
+
+            if (show){
+                visible++;
+            }
+
+        });
+
+        if (empty){
+
+            empty.style.display =
+                visible === 0
+                ? "block"
+                : "none";
+
+        }
+
+    }
+
+    if (search){
+
+        search.addEventListener(
+            "input",
+            filterCards
+        );
+
+    }
+
+    if (favoriteFilter){
+
+        favoriteFilter.addEventListener(
+            "click",
+            function(){
+
+                favoriteOnly =
+                    !favoriteOnly;
+
+                favoriteFilter.classList.toggle(
+                    "active",
+                    favoriteOnly
+                );
+
+                favoriteFilter.textContent =
+                    favoriteOnly
+                    ? "★ Đang xem yêu thích"
+                    : "☆ Chỉ yêu thích";
+
+                filterCards();
+
+            }
+        );
+
+    }
+
+    /* CHU */
+
+    var phrases = [
+
+        "Đang quét hệ thống định vị...",
+        "Đang kết nối dữ liệu...",
+        "Đang tìm tín hiệu định vị...",
+        "Hệ thống HAI MENU đã sẵn sàng.",
+        "Chọn định vị bạn muốn truy cập."
+
+    ];
+
+    var phraseIndex = 0;
+    var charIndex = 0;
+    var deleting = false;
+
+    function typeEffect(){
+
+        if (!typing) return;
+
+        var phrase =
+            phrases[phraseIndex];
+
+        if (!deleting){
+
+            typing.textContent =
+                phrase.substring(
+                    0,
+                    charIndex + 1
+                );
+
+            charIndex++;
+
+            if (charIndex >= phrase.length){
+
+                deleting = true;
+
+                setTimeout(
+                    typeEffect,
+                    1200
+                );
+
+                return;
+            }
+
+        }else{
+
+            typing.textContent =
+                phrase.substring(
+                    0,
+                    charIndex - 1
+                );
+
+            charIndex--;
+
+            if (charIndex <= 0){
+
+                deleting = false;
+
+                phraseIndex =
+                    (phraseIndex + 1)
+                    % phrases.length;
+
+            }
+
+        }
+
+        setTimeout(
+            typeEffect,
+            deleting ? 35 : 55
+        );
+
+    }
+
+    setTimeout(
+        typeEffect,
+        400
+    );
+
+    /* NUT LEN DAU */
+
+    window.addEventListener(
+        "scroll",
+        function(){
+
+            if (!topButton) return;
+
+            topButton.style.display =
+                window.scrollY > 300
+                ? "block"
+                : "none";
+
+        }
+    );
+
+    if (topButton){
+
+        topButton.addEventListener(
+            "click",
+            function(){
+
+                window.scrollTo({
+                    top:0,
+                    behavior:"smooth"
+                });
+
+            }
+        );
+
+    }
+
+    /* TOAST KHI TRUY CAP */
+
+    document.querySelectorAll(".access")
+        .forEach(function(){
+
+            var link = arguments[0];
+
+            link.addEventListener(
+                "click",
+                function(){
+
+                    showToast(
+                        "📍 Đang mở định vị..."
+                    );
+
+                }
+            );
+
+        });
+
+    /* CONSOLE */
+
+    function writeConsole(){
+
+        var text = arguments[0];
+
+        if (!consoleOutput) return;
+
+        consoleOutput.textContent +=
+            "\n" + text;
+
+        consoleOutput.scrollTop =
+            consoleOutput.scrollHeight;
+
+    }
+
+    function runCommand(){
+
+        if (!commandInput) return;
+
+        var command =
+            commandInput.value
+            .trim()
+            .toLowerCase();
+
+        commandInput.value = "";
+
+        if (!command) return;
+
+        writeConsole(
+            "> " + command
+        );
+
+        if (command === "help"){
+
+            writeConsole(
+                "help   - xem lệnh"
+            );
+
+            writeConsole(
+                "status - trạng thái hệ thống"
+            );
+
+            writeConsole(
+                "radar  - kiểm tra radar"
+            );
+
+            writeConsole(
+                "clear  - xóa console"
+            );
+
+            writeConsole(
+                "hai    - bí mật"
+            );
+
+        }else if (command === "status"){
+
+            writeConsole(
+                "SYSTEM: ONLINE"
+            );
+
+            writeConsole(
+                "TARGETS: " + cards.length
+            );
+
+            writeConsole(
+                "FAVORITES: " + favorites.length
+            );
+
+        }else if (command === "radar"){
+
+            writeConsole(
+                "RADAR: SCANNING..."
+            );
+
+            showToast(
+                "📡 Radar đang quét..."
+            );
+
+        }else if (command === "clear"){
+
+            consoleOutput.textContent =
+                "HAI MENU CONSOLE";
+
+        }else if (command === "hai"){
+
+            writeConsole(
+                "✦ HAI MENU — TÍN HIỆU ĐÃ NHẬN ✦"
+            );
+
+            showToast(
+                "✨ HAI MENU!"
+            );
+
+        }else{
+
+            writeConsole(
+                "Không hiểu lệnh. Gõ help."
+            );
+
+        }
+
+    }
+
+    if (consoleButton){
+
+        consoleButton.addEventListener(
+            "click",
+            function(){
+
+                consoleModal.classList.add(
+                    "show"
+                );
+
+                if (commandInput){
+
+                    setTimeout(
+                        function(){
+
+                            commandInput.focus();
+
+                        },
+                        100
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+    if (closeConsole){
+
+        closeConsole.addEventListener(
+            "click",
+            function(){
+
+                consoleModal.classList.remove(
+                    "show"
+                );
+
+            }
+        );
+
+    }
+
+    if (consoleModal){
+
+        consoleModal.addEventListener(
+            "click",
+            function(){
+
+                var event =
+                    arguments[0];
+
+                if (
+                    event.target ===
+                    consoleModal
+                ){
+
+                    consoleModal.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+    if (commandButton){
+
+        commandButton.addEventListener(
+            "click",
+            runCommand
+        );
+
+    }
+
+    if (commandInput){
+
+        commandInput.addEventListener(
+            "keydown",
+            function(){
+
+                var event =
+                    arguments[0];
+
+                if (event.key === "Enter"){
+
+                    runCommand();
+
+                }
+
+            }
+        );
+
+    }
+
+    if (noticeButton){
+
+        noticeButton.addEventListener(
+            "click",
+            function(){
+
+                showToast(
+                    "🔔 HAI MENU đang hoạt động bình thường."
+                );
+
+            }
+        );
+
+    }
+
+    updateFavorites();
+    filterCards();
+
+})();
+</script>
+
+</body>
+</html>
